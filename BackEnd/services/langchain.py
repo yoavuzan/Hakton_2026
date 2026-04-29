@@ -4,8 +4,8 @@ from pydantic import BaseModel, Field
 from typing import List
 import json
 
-from ..prompts import LEVEL2_PROMPT, LEVEL1_PROMPT
-from .llm_manager import LLMManager
+from BackEnd.prompts import LEVEL2_PROMPT, LEVEL1_PROMPT
+from BackEnd.services.llm_manager import LLMManager
 
 
 # ----------------------

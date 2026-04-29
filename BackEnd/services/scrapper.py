@@ -4,7 +4,7 @@ import trafilatura
 from bs4 import BeautifulSoup
 import time
 
-from core.logger import setup_logger, get_logger
+from BackEnd.core.logger import setup_logger, get_logger
 
 # ✅ init logger once (safe even if called multiple times)
 setup_logger()
