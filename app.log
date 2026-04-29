@@ -74,3 +74,59 @@ TypeError: Expected a Runnable, callable or dict.Instead got an unsupported type
 2026-04-29 22:25:21,320 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
 2026-04-29 22:25:22,046 | INFO | api | Streaming completed successfully
 2026-04-29 22:25:22,047 | INFO | api | Request completed in 12.48s
+2026-04-29 22:36:28,003 | INFO | api | Received request | url=https://www.c14.co.il/article/1540823 | disability=level1
+2026-04-29 22:36:28,026 | INFO | api | Starting scraping...
+2026-04-29 22:36:28,915 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.c14.co.il/article/1540823
+2026-04-29 22:36:29,070 | INFO | BackEnd.services.scrapper | Scraping success | sections=17
+2026-04-29 22:36:29,071 | INFO | BackEnd.services.scrapper | Total scraping time: 1.04s
+2026-04-29 22:36:29,072 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-29 22:36:31,976 | INFO | google_genai.models | AFC is enabled with max remote calls: 10.
+2026-04-29 22:36:41,643 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 12.57s
+2026-04-29 22:36:41,644 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
+2026-04-29 22:36:41,644 | INFO | api | Scraping done | sections=17
+2026-04-29 22:36:41,645 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
+2026-04-29 22:36:44,010 | INFO | google_genai.models | AFC is enabled with max remote calls: 10.
+2026-04-29 22:36:51,635 | INFO | api | Streaming completed successfully
+2026-04-29 22:36:51,636 | INFO | api | Request completed in 23.63s
+2026-04-29 22:39:48,495 | INFO | api | Received request | url=https://www.c14.co.il/article/1540823 | disability=level2
+2026-04-29 22:39:48,497 | INFO | api | Starting scraping...
+2026-04-29 22:39:48,580 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.c14.co.il/article/1540823
+2026-04-29 22:39:48,705 | INFO | BackEnd.services.scrapper | Scraping success | sections=17
+2026-04-29 22:39:48,706 | INFO | BackEnd.services.scrapper | Total scraping time: 0.21s
+2026-04-29 22:39:48,707 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-29 22:39:51,056 | INFO | google_genai.models | AFC is enabled with max remote calls: 10.
+2026-04-29 22:39:59,695 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 10.99s
+2026-04-29 22:39:59,696 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
+2026-04-29 22:39:59,698 | INFO | api | Scraping done | sections=17
+2026-04-29 22:39:59,700 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
+2026-04-29 22:40:02,109 | INFO | google_genai.models | AFC is enabled with max remote calls: 10.
+2026-04-29 22:40:09,684 | INFO | api | Streaming completed successfully
+2026-04-29 22:40:09,684 | INFO | api | Request completed in 21.19s
+2026-04-30 02:11:58,123 | INFO | api | Received request | url=https://www.c14.co.il/article/1540823 | disability=level1
+2026-04-30 02:11:58,137 | INFO | api | Starting scraping...
+2026-04-30 02:11:58,276 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.c14.co.il/article/1540823
+2026-04-30 02:11:58,371 | INFO | BackEnd.services.scrapper | Scraping success | sections=17
+2026-04-30 02:11:58,371 | INFO | BackEnd.services.scrapper | Total scraping time: 0.23s
+2026-04-30 02:11:58,372 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 02:12:01,881 | INFO | google_genai.models | AFC is enabled with max remote calls: 10.
+2026-04-30 02:12:10,952 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 12.58s
+2026-04-30 02:12:10,953 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
+2026-04-30 02:12:10,953 | INFO | api | Scraping done | sections=17
+2026-04-30 02:12:10,954 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
+2026-04-30 02:12:12,275 | INFO | google_genai.models | AFC is enabled with max remote calls: 10.
+2026-04-30 02:12:18,970 | INFO | api | Streaming completed successfully
+2026-04-30 02:12:18,971 | INFO | api | Request completed in 20.85s
+2026-04-30 02:12:46,216 | INFO | api | Received request | url=https://www.c14.co.il/article/1540823 | disability=level2
+2026-04-30 02:12:46,218 | INFO | api | Starting scraping...
+2026-04-30 02:12:46,272 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.c14.co.il/article/1540823
+2026-04-30 02:12:46,359 | INFO | BackEnd.services.scrapper | Scraping success | sections=17
+2026-04-30 02:12:46,360 | INFO | BackEnd.services.scrapper | Total scraping time: 0.14s
+2026-04-30 02:12:46,360 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 02:12:47,748 | INFO | google_genai.models | AFC is enabled with max remote calls: 10.
+2026-04-30 02:12:55,990 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 9.63s
+2026-04-30 02:12:55,990 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
+2026-04-30 02:12:55,991 | INFO | api | Scraping done | sections=17
+2026-04-30 02:12:55,991 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
+2026-04-30 02:12:57,414 | INFO | google_genai.models | AFC is enabled with max remote calls: 10.
+2026-04-30 02:13:04,214 | INFO | api | Streaming completed successfully
+2026-04-30 02:13:04,215 | INFO | api | Request completed in 18.00s

@@ -1,0 +1,9 @@
+﻿{
+  \"name\": \"hakthon-2026\",
+  \"scripts\": {
+    \"start\": \"sh run.sh\"
+  },
+  \"dependencies\": {
+    \"concurrently\": \"^8.2.2\"
+  }
+}
