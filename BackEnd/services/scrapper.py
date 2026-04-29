@@ -2,18 +2,45 @@ import aiohttp
 import asyncio
 import trafilatura
 from bs4 import BeautifulSoup
-import json
-import logging
 import time
+from BackEnd.core.logger import setup_logger, get_logger
 
-logger = logging.getLogger("scraper")
+
+# use centralized logger
+logger = get_logger(__name__)
 
 
 # ---------- FETCH ----------
 async def get_html(url: str) -> str:
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            return await response.text()
+    timeout = aiohttp.ClientTimeout(total=10)
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+
+    try:
+        async with aiohttp.ClientSession(timeout=timeout, headers=headers) as session:
+            async with session.get(url) as response:
+
+                logger.info(f"HTTP {response.status} | {url}")
+
+                #  bad HTTP response
+                if response.status != 200:
+                    raise Exception(f"HTTP error {response.status}")
+
+                content_type = response.headers.get("Content-Type", "")
+
+                #  not HTML
+                if "text/html" not in content_type:
+                    raise Exception(f"Not HTML: {content_type}")
+
+                return await response.text()
+
+    except asyncio.TimeoutError:
+        raise Exception("Request timed out")
+
+    except aiohttp.ClientError as e:
+        raise Exception(f"Connection error: {str(e)}")
 
 
 # ---------- TRAFILATURA ----------
@@ -48,7 +75,6 @@ def parse_text_smart(text: str):
 
     has_subtitles = any(line.startswith("## ") for line in lines)
 
-    # אם יש תתי כותרות → כמו קודם
     if has_subtitles:
         for line in lines:
             if line.startswith("## "):
@@ -66,7 +92,6 @@ def parse_text_smart(text: str):
         if current:
             sections.append(current)
 
-    # אם אין תתי כותרות → כל פסקה section
     else:
         for i, line in enumerate(lines):
             sections.append({
@@ -113,8 +138,9 @@ async def process_url(url: str):
             "sections": sections
         }
 
-    except Exception as e:
-        logger.error(f"Scraping failed: {str(e)}")
+    except Exception:
+        logger.exception("Scraping failed")  # full traceback
+
         return {"title": "Error", "sections": []}
 
     finally:

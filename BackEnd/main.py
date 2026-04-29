@@ -1,24 +1,22 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from BackEnd.services.scrapper import process_url
-from BackEnd.services.langchain import process_url_for_disability
-import logging
+from pydantic import BaseModel, HttpUrl
 import time
 
-logger = logging.getLogger("api")
+from BackEnd.services.scrapper import process_url
+from BackEnd.services.llm_pipeline import generate_main_summary, rewrite_summary
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] [%(name)s] %(message)s"
-)
-class AnalyzeRequest(BaseModel):
-    url: str
-    disability: str
+from BackEnd.core.logger import setup_logger, get_logger
+from BackEnd.models.schemas import AnalyzeRequest
+
+# ✅ setup logger ONCE
+setup_logger()
+logger = get_logger("api")
+
 
 app = FastAPI()
 
-# Add CORS middleware
+# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -27,25 +25,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 async def root():
+    logger.info("Health check called")
     return {"message": "Hello World"}
+
 
 @app.post("/analyze")
 async def analyze(request: AnalyzeRequest):
     start = time.time()
 
-    logger.info(f"Received request | url={request.url} | disability={request.disability}")
+    logger.info(f"Received request | url={request.url} | level={request.level}")
 
     try:
-        # 1. scrape
+        # ---------- SCRAPER ----------
         logger.info("Starting scraping...")
-        scraped = await process_url(request.url)
+        scraped = await process_url(str(request.url))
 
         sections = scraped.get("sections", [])
         logger.info(f"Scraping done | sections={len(sections)}")
 
-        # 2. convert sections → text
         content = "\n".join([s.get("text", "") for s in sections])
 
         if not content:
@@ -54,15 +54,20 @@ async def analyze(request: AnalyzeRequest):
 
         logger.info(f"Content prepared | length={len(content)}")
 
-        # 3. LLM
-        logger.info("Sending to LLM...")
-        result = await process_url_for_disability(content, request.disability)
-        logger.info("LLM processing finished")
+        # ---------- STAGE 1 ----------
+        logger.info("LLM stage 1 (MAIN)...")
+        summary = await generate_main_summary(content)
 
-        return result
+        # ---------- STAGE 2 ----------
+        logger.info("LLM stage 2 (REWRITE)...")
+        final = await rewrite_summary(summary, request.level)
+
+        logger.info("Pipeline finished")
+
+        return final
 
     except Exception as e:
-        logger.error(f"Analyze endpoint failed: {str(e)}")
+        logger.exception("Analyze endpoint failed")
 
         return {
             "title": "Internal Error",
@@ -72,4 +77,5 @@ async def analyze(request: AnalyzeRequest):
         }
 
     finally:
-        logger.info(f"Request completed in {time.time() - start:.2f}s")
+        elapsed = time.time() - start
+        logger.info(f"Request completed in {elapsed:.2f}s")
