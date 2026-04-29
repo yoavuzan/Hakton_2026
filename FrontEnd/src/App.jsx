@@ -131,123 +131,182 @@ export default function SafeContent() {
       setStatus("");
     }
   };
+  const isSevere = level === "level1";
 
-  return (
-    <div dir="rtl" className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-200">
+return (
+  <div
+    dir="rtl"
+    className={`
+      min-h-screen
+      bg-gradient-to-br from-slate-100 via-white to-slate-200
+      font-sans
+      text-right
+      ${isSevere ? "text-[22px] leading-[2]" : "text-[16px] leading-relaxed"}
+    `}
+  >
+    {/* NAVBAR */}
+    <header
+      className={`
+        fixed top-0 w-full border-b z-50 shadow-sm
+        ${isSevere ? "bg-white" : "backdrop-blur-xl bg-white/70"}
+      `}
+    >
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <h1 className="text-xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          SafeContent
+        </h1>
 
-      {/* NAVBAR */}
-      <header className="fixed top-0 w-full backdrop-blur-xl bg-white/70 border-b z-50 shadow-sm">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <h1 className="text-xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            SafeContent
-          </h1>
-
-          <div className="flex gap-2 bg-white/60 p-1 rounded-full">
-            {["level1", "level2"].map((m) => (
-              <button
-                key={m}
-                onClick={() => setLevel(m)}
-                className={`px-4 py-2 rounded-full text-sm ${
-                  level === m
-                    ? "bg-purple-500 text-white"
-                    : "text-slate-600"
-                }`}
-              >
-                {m === "level1" ? "פגיעה קשה רמה 1" : "פגיעה קשה רמה 2"}
-              </button>
-            ))}
-          </div>
-        </div>
-      </header>
-
-      {/* MAIN */}
-      <main className="pt-28 pb-16 px-4 flex justify-center">
-        <div className="w-full max-w-2xl">
-
-          {/* INPUT */}
-          <div className="flex gap-3 mb-10">
-            <input
-              type="text"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && !loading && handleAnalyze()}
-              placeholder="הכנס קישור לניתוח..."
-              className="flex-1 px-5 py-4 rounded-2xl border shadow-sm focus:ring-2 focus:ring-purple-300"
-            />
-
+        <div className="flex gap-2 bg-white/60 p-1 rounded-full">
+          {["level1", "level2"].map((m) => (
             <button
-              onClick={handleAnalyze}
-              disabled={loading || !url.trim()}
-              className={`px-6 py-4 rounded-2xl font-bold ${
-                loading
-                  ? "bg-slate-200 text-slate-400"
-                  : "bg-purple-500 hover:bg-purple-600 text-white"
+              key={m}
+              onClick={() => setLevel(m)}
+              className={`px-4 py-2 rounded-full text-sm ${
+                level === m
+                  ? "bg-purple-500 text-white"
+                  : "text-slate-600"
               }`}
             >
-              {loading ? "טוען..." : "נתח"}
+              {m === "level1" ? "פגיעה קשה" : "פגיעה קלה"}
             </button>
-          </div>
-
-          {/* LOADING */}
-          {loading && (
-            <div className="text-center py-10 text-slate-600">
-              {status}
-            </div>
-          )}
-
-          {/* ERROR */}
-          {error && (
-            <div className="text-red-500 text-center mb-4">
-              {error}
-            </div>
-          )}
-
-          {/* RESULT */}
-          {(result.title || result.sections.length > 0) && (
-            <div className="space-y-6">
-
-              {/* AUDIO */}
-              <div className="flex gap-3">
-                <button
-                  onClick={() => {
-                    const fullText = [
-                      result.title,
-                      ...result.sections.map(
-                        (s) => `${s.subtitle || ""} ${s.content}`
-                      ),
-                    ].join(". ");
-                    speak(fullText);
-                  }}
-                  className="px-4 py-2 bg-blue-500 text-white rounded-xl"
-                >
-                  🔊 נגן
-                </button>
-
-                <button
-                  onClick={stopSpeech}
-                  className="px-4 py-2 bg-red-500 text-white rounded-xl"
-                >
-                  ⛔ עצור
-                </button>
-              </div>
-
-              {/* TITLE */}
-              <h3 className="text-2xl font-bold">{result.title}</h3>
-
-              {/* SECTIONS */}
-              {result.sections.map((section, i) => (
-                <div key={i} className="bg-white border rounded-2xl p-6 shadow-sm">
-                  {section.subtitle && (
-                    <h4 className="font-bold mb-2">{section.subtitle}</h4>
-                  )}
-                  <p>{section.content}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
+          ))}
         </div>
-      </main>
-    </div>
-  );
+      </div>
+    </header>
+
+    {/* MAIN */}
+    <main className="pt-28 pb-16 px-4 flex justify-center">
+      <div className="w-full max-w-xl mx-auto">
+
+        {/* TITLE */}
+        <h2
+          className={`
+            font-bold text-center mb-6 text-slate-700
+            ${isSevere ? "text-3xl leading-loose" : "text-xl"}
+          `}
+        >
+          ניתוח תוכן בטוח
+        </h2>
+
+        {/* INPUT */}
+        <div className="flex gap-3 mb-10">
+          <input
+            type="text"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && !loading && handleAnalyze()}
+            placeholder="הכנס קישור לניתוח..."
+            className="flex-1 px-5 py-4 rounded-2xl border shadow-sm focus:ring-2 focus:ring-purple-300 text-[16px]"
+          />
+
+          <button
+            onClick={handleAnalyze}
+            disabled={loading || !url.trim()}
+            className={`px-6 py-4 rounded-2xl font-bold ${
+              loading
+                ? "bg-slate-200 text-slate-400"
+                : "bg-purple-500 hover:bg-purple-600 text-white"
+            }`}
+          >
+            {loading ? "טוען..." : "נתח"}
+          </button>
+        </div>
+
+        {/* LOADING */}
+        {loading && (
+          <div className="text-center py-10 text-slate-600">
+            {status}
+          </div>
+        )}
+
+        {/* ERROR */}
+        {error && (
+          <div className="text-red-500 text-center mb-4">
+            {error}
+          </div>
+        )}
+
+        {/* RESULT */}
+        {(result.title || result.sections.length > 0) && (
+          <div className={isSevere ? "space-y-8" : "space-y-5"}>
+
+            {/* AUDIO */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  const fullText = [
+                    result.title,
+                    ...result.sections.map(
+                      (s) => `${s.subtitle || ""} ${s.content}`
+                    ),
+                  ].join(". ");
+                  speak(fullText);
+                }}
+                className="px-4 py-2 bg-blue-500 text-white rounded-xl"
+              >
+                🔊 האזנה
+              </button>
+
+              <button
+                onClick={stopSpeech}
+                className="px-4 py-2 bg-red-500 text-white rounded-xl"
+              >
+                ⛔ הפסק האזנה
+              </button>
+            </div>
+
+            {/* TITLE */}
+            <h3
+              className={`
+                font-bold text-slate-900
+                ${isSevere ? "text-3xl mb-6" : "text-xl mb-3"}
+              `}
+            >
+              {result.title}
+            </h3>
+
+            {/* SECTIONS */}
+            {result.sections.map((section, i) => (
+                <div
+                    key={i}
+                    className={`
+                  bg-white
+                  border border-slate-200
+                  rounded-2xl
+                  shadow-sm
+                  ${isSevere ? "p-8 space-y-5" : "p-5 space-y-3"}
+                `}
+                >
+                  {section.subtitle && (
+                      <h4
+                          className={`
+                      font-bold border-b border-slate-200 pb-2
+                      ${isSevere ? "text-xl" : "text-base"}
+                    `}
+                      >
+                        {section.subtitle}
+                      </h4>
+                  )}
+
+                  <p
+                      className={`
+                        text-slate-900
+                        whitespace-pre-line
+                        bg-slate-50 rounded-lg
+                        ${isSevere
+                        ? "text-[22px] leading-[2] p-5"
+                         : "text-[16px] leading-relaxed p-3"}
+                      `}
+                                      >
+                    {section.content}
+                  </p>
+              </div>
+              ))}
+          </div>
+          )}
+
+      </div>
+    </main>
+  </div>
+);
 }

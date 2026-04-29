@@ -74,3 +74,143 @@ TypeError: Expected a Runnable, callable or dict.Instead got an unsupported type
 2026-04-29 22:25:21,320 | INFO | api | Summary generated: Suspected Stabbing Attack and Surge in Antisemitic Incidents in London
 2026-04-29 22:25:22,046 | INFO | api | Streaming completed successfully
 2026-04-29 22:25:22,047 | INFO | api | Request completed in 12.48s
+2026-04-30 01:12:15,118 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level1
+2026-04-30 01:12:15,125 | INFO | api | Starting scraping...
+2026-04-30 01:12:16,224 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:12:16,357 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:12:16,357 | INFO | BackEnd.services.scrapper | Total scraping time: 1.23s
+2026-04-30 01:12:16,357 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:12:25,684 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:12:25,708 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 9.35s
+2026-04-30 01:12:25,709 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:12:25,709 | INFO | api | Scraping done | sections=5
+2026-04-30 01:12:25,709 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:12:26,365 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:12:29,415 | INFO | api | Streaming completed successfully
+2026-04-30 01:12:29,415 | INFO | api | Request completed in 14.30s
+2026-04-30 01:25:53,022 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level1
+2026-04-30 01:25:53,023 | INFO | api | Starting scraping...
+2026-04-30 01:25:53,430 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:25:53,550 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:25:53,550 | INFO | BackEnd.services.scrapper | Total scraping time: 0.53s
+2026-04-30 01:25:53,551 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:26:02,689 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:26:02,712 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 9.16s
+2026-04-30 01:26:02,712 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:26:02,713 | INFO | api | Scraping done | sections=5
+2026-04-30 01:26:02,713 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:26:06,579 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:26:09,735 | INFO | api | Streaming completed successfully
+2026-04-30 01:26:09,735 | INFO | api | Request completed in 16.71s
+2026-04-30 01:32:28,844 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level1
+2026-04-30 01:32:28,845 | INFO | api | Starting scraping...
+2026-04-30 01:32:29,976 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:32:30,093 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:32:30,093 | INFO | BackEnd.services.scrapper | Total scraping time: 1.25s
+2026-04-30 01:32:30,093 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:32:37,387 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:32:37,399 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 7.31s
+2026-04-30 01:32:37,399 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:32:37,399 | INFO | api | Scraping done | sections=5
+2026-04-30 01:32:37,399 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:32:38,243 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:32:40,772 | INFO | api | Streaming completed successfully
+2026-04-30 01:32:40,772 | INFO | api | Request completed in 11.93s
+2026-04-30 01:40:49,525 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level1
+2026-04-30 01:40:49,526 | INFO | api | Starting scraping...
+2026-04-30 01:40:50,642 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:40:50,764 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:40:50,764 | INFO | BackEnd.services.scrapper | Total scraping time: 1.24s
+2026-04-30 01:40:50,764 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:40:55,160 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:40:55,182 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 4.42s
+2026-04-30 01:40:55,183 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:40:55,183 | INFO | api | Scraping done | sections=5
+2026-04-30 01:40:55,183 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:40:55,636 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:40:59,172 | INFO | api | Streaming completed successfully
+2026-04-30 01:40:59,173 | INFO | api | Request completed in 9.65s
+2026-04-30 01:42:16,793 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level2
+2026-04-30 01:42:16,794 | INFO | api | Starting scraping...
+2026-04-30 01:42:17,053 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:42:17,168 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:42:17,168 | INFO | BackEnd.services.scrapper | Total scraping time: 0.37s
+2026-04-30 01:42:17,169 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:42:21,495 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:42:21,523 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 4.35s
+2026-04-30 01:42:21,523 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:42:21,523 | INFO | api | Scraping done | sections=5
+2026-04-30 01:42:21,524 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:42:22,181 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:42:30,600 | INFO | api | Streaming completed successfully
+2026-04-30 01:42:30,600 | INFO | api | Request completed in 13.81s
+2026-04-30 01:42:36,980 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level1
+2026-04-30 01:42:36,981 | INFO | api | Starting scraping...
+2026-04-30 01:42:37,395 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:42:37,579 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:42:37,579 | INFO | BackEnd.services.scrapper | Total scraping time: 0.60s
+2026-04-30 01:42:37,579 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:42:45,572 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:42:45,596 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 8.02s
+2026-04-30 01:42:45,596 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:42:45,596 | INFO | api | Scraping done | sections=5
+2026-04-30 01:42:45,597 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:42:46,359 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:42:49,278 | INFO | api | Streaming completed successfully
+2026-04-30 01:42:49,279 | INFO | api | Request completed in 12.30s
+2026-04-30 01:43:27,149 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level2
+2026-04-30 01:43:27,150 | INFO | api | Starting scraping...
+2026-04-30 01:43:27,431 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:43:27,553 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:43:27,554 | INFO | BackEnd.services.scrapper | Total scraping time: 0.40s
+2026-04-30 01:43:27,554 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:43:35,057 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:43:35,083 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 7.53s
+2026-04-30 01:43:35,084 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:43:35,084 | INFO | api | Scraping done | sections=5
+2026-04-30 01:43:35,085 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:43:35,815 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:43:41,621 | INFO | api | Streaming completed successfully
+2026-04-30 01:43:41,622 | INFO | api | Request completed in 14.47s
+2026-04-30 01:44:39,869 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level2
+2026-04-30 01:44:39,870 | INFO | api | Starting scraping...
+2026-04-30 01:44:40,961 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:44:41,076 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:44:41,076 | INFO | BackEnd.services.scrapper | Total scraping time: 1.21s
+2026-04-30 01:44:41,077 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:44:45,542 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:44:45,566 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 4.49s
+2026-04-30 01:44:45,567 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:44:45,567 | INFO | api | Scraping done | sections=5
+2026-04-30 01:44:45,567 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:44:46,189 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:44:51,932 | INFO | api | Streaming completed successfully
+2026-04-30 01:44:51,933 | INFO | api | Request completed in 12.06s
+2026-04-30 01:44:55,833 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level1
+2026-04-30 01:44:55,834 | INFO | api | Starting scraping...
+2026-04-30 01:44:56,021 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:44:56,137 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:44:56,137 | INFO | BackEnd.services.scrapper | Total scraping time: 0.30s
+2026-04-30 01:44:56,137 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:45:03,869 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:45:03,891 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 7.75s
+2026-04-30 01:45:03,891 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:45:03,891 | INFO | api | Scraping done | sections=5
+2026-04-30 01:45:03,892 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:45:05,442 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:45:09,381 | INFO | api | Streaming completed successfully
+2026-04-30 01:45:09,381 | INFO | api | Request completed in 13.55s
+2026-04-30 01:54:34,393 | INFO | api | Received request | url=https://www.ynet.co.il/news/article/bkfu3p21el | disability=level1
+2026-04-30 01:54:34,399 | INFO | api | Starting scraping...
+2026-04-30 01:54:34,888 | INFO | BackEnd.services.scrapper | HTTP 200 | https://www.ynet.co.il/news/article/bkfu3p21el
+2026-04-30 01:54:34,989 | INFO | BackEnd.services.scrapper | Scraping success | sections=5
+2026-04-30 01:54:34,989 | INFO | BackEnd.services.scrapper | Total scraping time: 0.59s
+2026-04-30 01:54:34,989 | INFO | BackEnd.services.llm_pipeline | LLM stage 1 (MAIN)
+2026-04-30 01:54:42,625 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:54:42,655 | INFO | BackEnd.services.llm_pipeline | Stage 1 done in 7.66s
+2026-04-30 01:54:42,655 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:54:42,656 | INFO | api | Scraping done | sections=5
+2026-04-30 01:54:42,656 | INFO | api | Summary generated: Stabbing Incident at Zarzir High School
+2026-04-30 01:54:43,456 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 01:54:46,610 | INFO | api | Streaming completed successfully
+2026-04-30 01:54:46,611 | INFO | api | Request completed in 12.22s
