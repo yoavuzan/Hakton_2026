@@ -5,7 +5,9 @@ from langchain_core.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
 from typing import List
 import json
-from langchain_community.document_loaders import WebBaseLoader
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Section(BaseModel):
     subtitle: str = Field(description="The subtitle of the section")
@@ -36,35 +38,60 @@ Content:
 {content}
 """
 
-async def process_url_for_disability(url: str, disability: str):
-    loader = WebBaseLoader(url)
-    # Use asyncio.to_thread to run the synchronous load() in a separate thread
-    # This avoids the error "asyncio.run() cannot be called from a running event loop"
-    # which happens with loader.aload() in some environments.
-    docs = await asyncio.to_thread(loader.load)
-    content = "\n".join([doc.page_content for doc in docs])
+async def process_url_for_disability(content: str, disability: str):
+
+    logger.info("Starting LLM pipeline")
+
+    if not content:
+        logger.warning("Empty content received")
+        return {
+            "title": "Empty Content",
+            "sections": []
+        }
+
+    logger.info(f"Content length: {len(content)}")
 
     if disability.lower() == "anxiety":
         prompt_text = ANXIETY_PROMPT
+        logger.info("Selected ANXIETY prompt")
     else:
         prompt_text = PTSD_PROMPT
-
-    llm = ChatOllama(model="phi3:mini", temperature=0)
-    parser = JsonOutputParser(pydantic_object=AnalysisResult)
-
-    prompt = ChatPromptTemplate.from_template(prompt_text)
-
-    chain = prompt | llm | parser
+        logger.info("Selected PTSD prompt")
 
     try:
+        logger.info("Initializing LLM...")
+        llm = ChatOllama(model="qwen2.5:3b", temperature=0)
+
+        logger.info("Creating parser...")
+        parser = JsonOutputParser(pydantic_object=AnalysisResult)
+
+        logger.info("Building prompt template...")
+        prompt = ChatPromptTemplate.from_template(prompt_text)
+
+        logger.info("Building chain...")
+        chain = prompt | llm | parser
+
+        logger.info("Calling LLM...")
         result = await chain.ainvoke({"content": content[:10000]})
+
+        logger.info("LLM response received")
+
+        if isinstance(result, dict) and "sections" in result:
+            logger.info(f"Generated {len(result['sections'])} sections")
+        else:
+            logger.warning("Unexpected response format")
+
         return result
+
     except Exception as e:
-        # Fallback in case of parsing error
+        logger.error(f"LLM failed: {str(e)}")
+
         return {
             "title": "Error Processing Content",
             "sections": [
-                {"subtitle": "Error", "content": f"There was an error analyzing the content: {str(e)}"}
+                {
+                    "subtitle": "Error",
+                    "content": str(e)
+                }
             ]
         }
-
