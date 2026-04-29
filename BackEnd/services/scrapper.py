@@ -2,14 +2,44 @@ import aiohttp
 import asyncio
 import trafilatura
 from bs4 import BeautifulSoup
-import json
 import time
+
+from BackEnd.core.logger import setup_logger, get_logger
+
+# ✅ init logger once (safe even if called multiple times)
+setup_logger()
+logger = get_logger(__name__)
+
 
 # ---------- FETCH ----------
 async def get_html(url: str) -> str:
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            return await response.text()
+    timeout = aiohttp.ClientTimeout(total=10)
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+
+    try:
+        async with aiohttp.ClientSession(timeout=timeout, headers=headers) as session:
+            async with session.get(url) as response:
+
+                logger.info(f"HTTP {response.status} | {url}")
+
+                if response.status != 200:
+                    raise Exception(f"HTTP error {response.status}")
+
+                content_type = response.headers.get("Content-Type", "")
+
+                if "text/html" not in content_type:
+                    raise Exception(f"Not HTML: {content_type}")
+
+                return await response.text()
+
+    except asyncio.TimeoutError:
+        raise Exception("Request timed out")
+
+    except aiohttp.ClientError as e:
+        raise Exception(f"Connection error: {str(e)}")
 
 
 # ---------- TRAFILATURA ----------
@@ -44,7 +74,7 @@ def parse_text_smart(text: str):
 
     has_subtitles = any(line.startswith("## ") for line in lines)
 
-    # ?? ?? ??? ??????
+    # ✅ case 1: markdown subtitles
     if has_subtitles:
         for line in lines:
             if line.startswith("## "):
@@ -62,11 +92,11 @@ def parse_text_smart(text: str):
         if current:
             sections.append(current)
 
-    # ?? ??? ??? ??????
+    # ✅ case 2: no structure → fallback
     else:
         for i, line in enumerate(lines):
             sections.append({
-                "subtitle": f"???? {i+1}",
+                "subtitle": f"Section {i+1}",
                 "text": line
             })
 
@@ -75,6 +105,8 @@ def parse_text_smart(text: str):
 
 # ---------- PIPELINE ----------
 async def process_url(url: str):
+    start_total = time.time()
+
     try:
         # ---------- FETCH ----------
         html = await get_html(url)
@@ -86,15 +118,23 @@ async def process_url(url: str):
         text = await extract_text_async(html)
 
         if not text:
+            logger.warning("No text extracted")
             return {"title": title, "sections": []}
 
         # ---------- PARSE ----------
         sections = parse_text_smart(text)
+
+        logger.info(f"Scraping success | sections={len(sections)}")
 
         return {
             "title": title,
             "sections": sections
         }
 
-    except Exception as e:
+    except Exception:
+        logger.exception("Scraping failed")
         return {"title": "Error", "sections": []}
+
+    finally:
+        elapsed = time.time() - start_total
+        logger.info(f"Total scraping time: {elapsed:.2f}s")
