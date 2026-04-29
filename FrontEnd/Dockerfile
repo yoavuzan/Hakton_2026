@@ -1,11 +1,11 @@
-FROM node:18
-
 WORKDIR /app
-COPY package*.json ./
+
+COPY FrontEnd/package*.json ./
 RUN npm install
 
-COPY . .
-RUN npm run build
+COPY FrontEnd ./
 
-RUN npm install -g serve
-CMD ["serve", "-s", "dist", "-l", "3000"]
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host"]
+

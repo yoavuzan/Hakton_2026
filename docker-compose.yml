@@ -1,26 +1,28 @@
-version: "3.9"
-
 services:
-  frontend:
-    build: ./FrontEnd
+  backend:
+    build:
+      context: .
+      dockerfile: BackEnd/Dockerfile
     ports:
-      - "3000:3000"
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./BackEnd:/app/BackEnd
+
+  frontend:
+    build:
+      context: .
+      dockerfile: FrontEnd/Dockerfile
+    ports:
+      - "5173:5173"
+    env_file:
+      - .env
+    volumes:
+      - ./FrontEnd:/app
+      - /app/node_modules
     environment:
-      - VITE_API_URL=http://backend:5000
+      - VITE_API_URL=http://localhost:8000
     depends_on:
       - backend
 
-  backend:
-    build: ./BackEnd
-    ports:
-      - "5000:5000"
-    environment:
-      - PYTHON_SERVICE_URL=http://python:8000
-    depends_on:
-      - python
-
-  python:
-    build: ./BackEnd
-    command: ["python", "main.py"]
-    ports:
-      - "8000:8000"
