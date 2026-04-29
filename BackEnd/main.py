@@ -5,10 +5,10 @@ from pydantic import BaseModel, HttpUrl
 import json
 import time
 
-from BackEnd.services.scrapper import process_url
-from BackEnd.services.langchain import stream_url_for_disability
-from BackEnd.services.llm_pipeline import generate_main_summary
-from BackEnd.core.logger import setup_logger, get_logger
+from services.scrapper import process_url
+from services.langchain import stream_url_for_disability
+from services.llm_pipeline import generate_main_summary
+from core.logger import setup_logger, get_logger
 
 # ✅ setup logger ONCE
 setup_logger()

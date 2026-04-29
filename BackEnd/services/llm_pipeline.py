@@ -1,7 +1,7 @@
-from BackEnd.core.logger import get_logger
-from BackEnd.models.schemas import AnalysisResult
-from BackEnd.services.llm_manager import LLMManager
-from BackEnd.prompts import MAIN_PROMPT, LEVEL1_PROMPT, LEVEL2_PROMPT
+from core.logger import get_logger
+from models.schemas import AnalysisResult
+from services.llm_manager import LLMManager
+from prompts import MAIN_PROMPT, LEVEL1_PROMPT, LEVEL2_PROMPT
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 import time

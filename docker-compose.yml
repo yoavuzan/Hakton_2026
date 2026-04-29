@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./FrontEnd
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://backend:5000
+    depends_on:
+      - backend
+
+  backend:
+    build: ./BackEnd
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHON_SERVICE_URL=http://python:8000
+    depends_on:
+      - python
+
+  python:
+    build: ./BackEnd
+    command: ["python", "main.py"]
+    ports:
+      - "8000:8000"
